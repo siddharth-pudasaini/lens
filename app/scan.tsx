@@ -1,21 +1,37 @@
-import { CameraType, CameraView, useCameraPermissions } from "expo-camera";
+import {
+    CameraType,
+    CameraView,
+    FlashMode,
+    useCameraPermissions,
+} from "expo-camera";
 import { router } from "expo-router";
 import { useRef, useState } from "react";
 import { Button, StyleSheet, Text, View } from "react-native";
 
 export default function CameraScreen() {
     const [facing, setFacing] = useState<CameraType>("back");
-
+    const [flashMode, setFlashMode] = useState<FlashMode>("off");
     const [scanData, setScanData] = useState<string | null>(null);
     const [mode, setMode] = useState("barcode");
     const [permission, requestPermission] = useCameraPermissions();
     const cameraRef = useRef(null);
+    const isScannedRef = useRef(false); // Prevent multiple scans
 
     const handleBarcodeScanned = (result: { data: string }) => {
-        router.replace({
+        if (isScannedRef.current) return; // Prevent multiple scans
+
+        isScannedRef.current = true;
+        setScanData(result.data); // Save the scanned data
+        router.push({
             pathname: "/result",
             params: { upcCode: result.data },
         });
+
+        // Optionally reset scanning after a delay
+        setTimeout(() => {
+            isScannedRef.current = false;
+            setScanData(null);
+        }, 3000); // Allow scanning again after 3 seconds
     };
 
     if (!permission) return <View />;
@@ -37,6 +53,7 @@ export default function CameraScreen() {
                 ref={cameraRef}
                 style={StyleSheet.absoluteFill}
                 facing={facing}
+                flash={flashMode}
                 barcodeScannerSettings={{
                     barcodeTypes: ["qr", "ean13", "code128"],
                 }}
@@ -63,7 +80,7 @@ const styles = StyleSheet.create({
         textAlign: "center",
         paddingBottom: 10,
     },
-   
+
     text: {
         fontSize: 16,
         color: "white",
