@@ -63,51 +63,13 @@ const styles = StyleSheet.create({
         textAlign: "center",
         paddingBottom: 10,
     },
-    topControls: {
-        position: "absolute",
-        top: 40,
-        left: 0,
-        right: 0,
-        alignItems: "center",
-    },
-    switchRow: {
-        flexDirection: "row",
-        alignItems: "center",
-        backgroundColor: "rgba(0,0,0,0.5)",
-        paddingHorizontal: 20,
-        paddingVertical: 10,
-        borderRadius: 10,
-    },
+   
     text: {
         fontSize: 16,
         color: "white",
         marginHorizontal: 8,
     },
-    bottomControls: {
-        position: "absolute",
-        bottom: 50,
-        width: "100%",
-        flexDirection: "row",
-        justifyContent: "center",
-        alignItems: "center",
-        gap: 30,
-    },
-    controlButton: {
-        backgroundColor: "rgba(0,0,0,0.5)",
-        paddingHorizontal: 20,
-        paddingVertical: 12,
-        borderRadius: 8,
-        marginHorizontal: 10,
-    },
-    captureButton: {
-        width: 70,
-        height: 70,
-        borderRadius: 35,
-        borderWidth: 5,
-        borderColor: "white",
-        backgroundColor: "rgba(255,255,255,0.2)",
-        marginHorizontal: 10,
-    },
+
     barcodeBox: {
         position: "absolute",
         top: "25%",
