@@ -1,11 +1,11 @@
-import { Ionicons } from "@expo/vector-icons";
+import { Home, MessageCirclePlus, ScanLine } from "lucide-react-native";
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
-import { fontColor,primaryColor } from "@/constants";
+import { fontColor, Light, primaryColor } from "@/constants";
 
 interface BottomNavigationProps {
-    onNavigate: (screen: string) => void; // Callback to handle navigation
+    onNavigate: (screen: string) => void;
 }
 
 const BottomNavigation: React.FC<BottomNavigationProps> = ({ onNavigate }) => {
@@ -13,23 +13,25 @@ const BottomNavigation: React.FC<BottomNavigationProps> = ({ onNavigate }) => {
         <View style={styles.container}>
             <TouchableOpacity
                 style={styles.navItem}
-                onPress={() => onNavigate("Home")}
+                onPress={() => onNavigate("/")}
             >
-                <Ionicons name="home" size={28} color={primaryColor} />
+                <Home size={28} color={primaryColor} />
                 <Text style={styles.navText}>Home</Text>
             </TouchableOpacity>
+
             <TouchableOpacity
                 style={styles.scan}
-                onPress={() => onNavigate("Scan")}
+                onPress={() => onNavigate("/scan")}
             >
-                <Ionicons name="scan" size={80} color={primaryColor} />
+                <ScanLine size={70} strokeWidth={1} color={primaryColor} />
                 <Text style={styles.scanText}>Scan</Text>
             </TouchableOpacity>
+
             <TouchableOpacity
                 style={styles.navItem}
-                onPress={() => onNavigate("Profile")}
+                onPress={() => onNavigate("/ai-chat")}
             >
-                <Ionicons name="chatbubbles" size={24} color={primaryColor} />
+                <MessageCirclePlus size={24} color={primaryColor} />
                 <Text style={styles.navText}>Ask AI</Text>
             </TouchableOpacity>
         </View>
@@ -44,14 +46,15 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     navItem: {
-        alignItems: "center",
         flexDirection: "row",
+        alignItems: "center",
         backgroundColor: "white",
         padding: 15,
         borderRadius: 12,
     },
     navText: {
         fontSize: 14,
+        fontFamily: Light,
         color: fontColor,
         marginLeft: 4,
     },
@@ -61,6 +64,7 @@ const styles = StyleSheet.create({
     },
     scanText: {
         fontSize: 14,
+        fontFamily: Light,
         color: fontColor,
         marginTop: 4,
     },

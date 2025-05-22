@@ -1,35 +1,35 @@
-import { Ionicons } from "@expo/vector-icons";
+import { Link2 } from "lucide-react-native";
 import React from "react";
 import { StyleSheet, TextInput, View } from "react-native";
 
-import { fontColor, primaryColor } from "@/constants";
+import { fontColor, Light, primaryColor } from "@/constants";
 
 interface URLInputProps {
-    label?: string; // Optional label for the input
-    onChangeText: (text: string) => void; // Callback when the text changes
-    placeholder?: string; // Optional placeholder text
+    value: string;
+    onChangeText: (text: string) => void;
+    onSubmitEditing: () => void;
+    placeholder?: string;
 }
 
 const URLInput: React.FC<URLInputProps> = ({
-    label = "Website URL",
+    value,
     onChangeText,
+    onSubmitEditing,
     placeholder = "Add a Url",
 }) => {
     return (
         <View style={styles.wrapper}>
             <View style={styles.container}>
-                <Ionicons
-                    name="link"
-                    style={styles.linkIcon}
-                    size={24}
-                    color={primaryColor}
-                />
+                <Link2 style={styles.linkIcon} size={24} color={primaryColor} />
                 <TextInput
                     style={styles.input}
+                    value={value}
                     onChangeText={onChangeText}
+                    onSubmitEditing={onSubmitEditing}
                     placeholder={placeholder}
                     autoCapitalize="none"
                     autoCorrect={false}
+                    returnKeyType="search"
                     keyboardType="url"
                     textContentType="URL"
                     placeholderTextColor="#aaa"
@@ -40,12 +40,10 @@ const URLInput: React.FC<URLInputProps> = ({
 };
 
 const styles = StyleSheet.create({
-
-    wrapper:{
-        height:'10%',
-        backgroundColor:primaryColor
+    wrapper: {
+        height: "10%",
+        backgroundColor: primaryColor,
     },
-
     container: {
         marginVertical: 10,
         flexDirection: "row",
@@ -54,15 +52,16 @@ const styles = StyleSheet.create({
         width: "92%",
         borderRadius: 11,
         alignSelf: "center",
-        position:"relative",
-        top:35
+        position: "relative",
+        top: 30,
     },
     input: {
-        height: 60,
+        height: 50,
         paddingHorizontal: 12,
         fontSize: 16,
         width: "80%",
         color: fontColor,
+        fontFamily: Light,
     },
     linkIcon: {
         marginLeft: 10,
