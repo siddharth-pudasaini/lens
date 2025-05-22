@@ -1,5 +1,5 @@
 import { Light, primaryColor, SemiBold } from "@/constants";
-import React, { useRef, useState } from "react";
+import React, { useRef, useState,useEffect } from "react";
 import {
     Dimensions,
     NativeScrollEvent,
@@ -25,18 +25,18 @@ const Carousel = () => {
 
     const totalSlides = 3;
 
-    // useEffect(() => {
-    //     const interval = setInterval(() => {
-    //         let nextIndex = (index + 1) % totalSlides;
-    //         scrollRef.current?.scrollTo({
-    //             x: nextIndex * width,
-    //             animated: true,
-    //         });
-    //         setIndex(nextIndex);
-    //     }, 5000);
+    useEffect(() => {
+        const interval = setInterval(() => {
+            let nextIndex = (index + 1) % totalSlides;
+            scrollRef.current?.scrollTo({
+                x: nextIndex * width,
+                animated: true,
+            });
+            setIndex(nextIndex);
+        }, 5000);
 
-    //     return () => clearInterval(interval); // cleanup on unmount
-    // }, [index]);
+        return () => clearInterval(interval); // cleanup on unmount
+    }, [index]);
 
     return (
         <View style={styles.container}>
