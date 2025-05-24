@@ -55,7 +55,21 @@ export default function CameraScreen() {
                 facing={facing}
                 flash={flashMode}
                 barcodeScannerSettings={{
-                    barcodeTypes: ["qr", "ean13", "code128"],
+                    barcodeTypes: [
+                        "aztec",
+                        "code128",
+                        "code39",
+                        "code93",
+                        "codabar",
+                        "datamatrix",
+                        "ean13",
+                        "ean8",
+                        "itf14",
+                        "pdf417",
+                        "qr",
+                        "upc_a",
+                        "upc_e",
+                    ],
                 }}
                 onBarcodeScanned={handleBarcodeScanned}
             />

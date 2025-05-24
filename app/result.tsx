@@ -1,14 +1,17 @@
-import { Light, primaryColor } from "@/constants";
+import { Light, Medium, primaryColor } from "@/constants";
 import { useLocalSearchParams } from "expo-router";
 import { ChevronDown, ChevronUp } from "lucide-react-native";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
     ActivityIndicator,
     Image,
+    LayoutAnimation,
+    Platform,
     ScrollView,
     StyleSheet,
     Text,
     TouchableOpacity,
+    UIManager,
     View,
 } from "react-native";
 
@@ -22,6 +25,7 @@ interface Ingredient {
     org_guidance: string;
     risk_reason: string;
     why_present: string;
+    riskLevel: string;
 }
 
 interface DailyValues {
@@ -49,6 +53,7 @@ interface Nutrition {
 
 interface ProductDetails {
     barcode: string;
+    summary_text: string;
     name: string;
     brand: string;
     quantity: string;
@@ -68,6 +73,32 @@ interface ProductDetails {
     nutrition: Nutrition;
 }
 
+const wellCasedString = (string: string) => {
+    return (
+        string.charAt(0).toUpperCase() + string.slice(1).toLowerCase() + " Risk"
+    );
+};
+
+const getRiskColor = (level: string) => {
+    switch (level.toLowerCase()) {
+        case "low":
+            return { color: primaryColor }; // green
+        case "medium":
+            return { color: "#FB8C00" }; // amber
+        case "high":
+            return { color: "#E9413B" }; // red
+        default:
+            return { color: "#000000" }; // gray
+    }
+};
+
+if (
+    Platform.OS === "android" &&
+    UIManager.setLayoutAnimationEnabledExperimental
+) {
+    UIManager.setLayoutAnimationEnabledExperimental(true);
+}
+
 export default function ResultScreen() {
     const { upcCode } = useLocalSearchParams();
     const [expandedIngredients, setExpandedIngredients] = useState<number[]>(
@@ -75,19 +106,36 @@ export default function ResultScreen() {
     );
     const [expandedNutrition, setExpandedNutrition] = useState<number[]>([]);
     const [data, setData] = useState<ProductDetails | null>(null);
+    const [scrollEnabled, setScrollEnabled] = useState(true);
 
     useEffect(() => {
-        import("../test/upcData.json").then((module) => {
-            setData(module.default as ProductDetails);
-        });
+        const fetchData = async () => {
+            try {
+                const response = await fetch(
+                    `http://18.234.52.230/api/gulo-approved/${upcCode}`
+                );
+                if (!response.ok) throw new Error("Failed to fetch");
+                const json = await response.json();
+                setData(json.data as ProductDetails);
+            } catch (error) {
+                console.error("API error:", error);
+            }
+        };
+
+        fetchData();
     }, []);
 
     const toggleIngredient = (index: number) => {
+        const isExpanded = expandedIngredients.includes(index);
+
+        LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
         setExpandedIngredients((prev) =>
             prev.includes(index)
                 ? prev.filter((i) => i !== index)
                 : [...prev, index]
         );
+        // Re-enable scroll after animation
+        setTimeout(() => setScrollEnabled(true), 300);
     };
 
     const toggleNutrition = (index: number) => {
@@ -110,6 +158,7 @@ export default function ResultScreen() {
         <ScrollView
             style={styles.container}
             contentContainerStyle={{ paddingBottom: 100 }}
+            scrollEnabled={scrollEnabled}
         >
             <Image
                 source={{ uri: data.images.front }}
@@ -121,7 +170,7 @@ export default function ResultScreen() {
             <View style={{ marginTop: 20, marginBottom: 8 }}>
                 <Text style={styles.sectionTitle}>Summary</Text>
                 <View style={styles.underline} />
-                <Text style={styles.summaryText}>{data.process_text}</Text>
+                <Text style={styles.summaryText}>{data.summary_text}</Text>
             </View>
 
             <View style={{ marginTop: 20, marginBottom: 8 }}>
@@ -131,12 +180,20 @@ export default function ResultScreen() {
             {data.ingredients.map((ingredient, index) => (
                 <View key={index} style={styles.ingredientBox}>
                     <View style={styles.rowBetween}>
-                        <View>
-                            <Text style={styles.ingredientText}>
-                                {ingredient.name}
-                            </Text>
-                        </View>
+                        <Text style={styles.ingredientText}>
+                            {ingredient.name}
+                        </Text>
+
+                        <Text
+                            style={[
+                                styles.riskLevel,
+                                getRiskColor(ingredient.riskLevel),
+                            ]}
+                        >
+                            {wellCasedString(ingredient.riskLevel)}
+                        </Text>
                         <TouchableOpacity
+                            style={styles.upDownButton}
                             onPress={() => toggleIngredient(index)}
                         >
                             {expandedIngredients.includes(index) ? (
@@ -147,25 +204,29 @@ export default function ResultScreen() {
                         </TouchableOpacity>
                     </View>
                     {expandedIngredients.includes(index) && (
-                        <View>
-                            <Text style={styles.riskText}>
-                                {ingredient.risk_reason}
+                        <View style={styles.expandedBox}>
+                            <Text style={styles.infoLabel}>
+                                Why is it here?
                             </Text>
                             <Text style={styles.expandedText}>
                                 {ingredient.why_present}
                             </Text>
-                            <Text style={styles.expandedText}>
-                                Vegan: {ingredient.vegan || "Unknown"}
+                            <Text style={styles.infoLabel}>
+                                Why is {wellCasedString(ingredient.riskLevel)} ?
                             </Text>
                             <Text style={styles.expandedText}>
-                                Vegetarian:
-                                {ingredient.vegetarian || "Unknown"}
+                                {ingredient.risk_reason}
+                            </Text>
+                            <Text style={styles.infoLabel}>Banned ?</Text>
+
+                            <Text style={styles.expandedText}>
+                                {ingredient.banned_regions}
+                            </Text>
+                            <Text style={styles.infoLabel}>
+                                WHO and Agency Recommendations
                             </Text>
                             <Text style={styles.expandedText}>
-                                Banned Regions:{" "}
-                                {Array.isArray(ingredient.banned_regions)
-                                    ? ingredient.banned_regions.join(", ")
-                                    : ingredient.banned_regions}
+                                {ingredient.org_guidance}
                             </Text>
                         </View>
                     )}
@@ -176,6 +237,22 @@ export default function ResultScreen() {
 }
 
 const styles = StyleSheet.create({
+    upDownButton: {
+        marginLeft: 10,
+    },
+    riskLevel: {
+        fontFamily: Light,
+        fontSize: 12,
+    },
+    expandedBox: {
+        marginVertical: 20,
+    },
+    infoLabel: {
+        fontFamily: Medium,
+        color: primaryColor,
+        marginVertical: 10,
+        fontSize: 14,
+    },
     loadingContainer: {
         flex: 1,
         justifyContent: "center",
@@ -186,7 +263,7 @@ const styles = StyleSheet.create({
         height: 2,
         backgroundColor: primaryColor,
         marginTop: 1, // Adjust distance from text
-        width: 120,
+        width: 90,
         marginBottom: 20,
     },
     loadingText: {
@@ -197,7 +274,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: "#fff",
-        padding:16
+        padding: 16,
     },
     image: {
         width: "100%",
@@ -243,6 +320,7 @@ const styles = StyleSheet.create({
         fontSize: 16,
         color: "#4b5563",
         marginBottom: 6,
+        lineHeight: 24,
     },
     chartContainer: {
         backgroundColor: "#f3f4f6",
@@ -256,31 +334,38 @@ const styles = StyleSheet.create({
         color: "#374151",
     },
     ingredientBox: {
-        backgroundColor: "#f9fafb",
-        padding: 12,
+        backgroundColor: "white",
+        padding: 20,
         borderRadius: 8,
-        marginVertical: 4,
+        marginVertical: 10,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.1,
+        shadowRadius: 4,
+
+        elevation: 3,
     },
     ingredientText: {
         fontFamily: Light,
         fontSize: 16,
+        width: "60%",
     },
-    riskText: {
-        fontSize: 13,
-        color: "#ef4444",
-    },
+
     nutritionValue: {
         fontSize: 13,
         color: "#9ca3af",
     },
     expandedText: {
-        fontSize: 13,
-        marginTop: 8,
+        fontSize: 14,
         color: "#6b7280",
+        padding: 10,
     },
     rowBetween: {
         flexDirection: "row",
-        justifyContent: "space-between",
+        justifyContent: "space-around",
         alignItems: "center",
     },
 });
