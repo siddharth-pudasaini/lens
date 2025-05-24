@@ -32,22 +32,40 @@ export default function RootLayout() {
     }
 
     return (
-        <Stack
-            screenOptions={{
-                headerShown: true,
-                headerTitle: "Food Lens",
-                headerShadowVisible: false,
-                headerStyle: {
-                    backgroundColor: primaryColor,
-                },
-                headerTitleStyle: {
-                    fontFamily: Medium,
-                    fontSize: 25,
-                    color: "white",
-                },
-                headerBackTitle: "Back",
-                headerTintColor: "white",
-            }}
-        />
+        <Stack>
+            {/* Default options for all screens */}
+            <Stack.Screen
+                name="index"
+                options={{
+                    headerTitle: "Food Lens",
+                    headerShadowVisible: false,
+                    headerStyle: {
+                        backgroundColor: primaryColor,
+                    },
+                    headerTitleStyle: {
+                        fontFamily: Medium,
+                        fontSize: 25,
+                        color: "white",
+                    },
+                    headerBackTitle: "Back",
+                    headerTintColor: "white",
+                }}
+            />
+
+            {/* Override header for chat screen */}
+            <Stack.Screen
+                name="chat"
+                options={{
+                    headerTitle: "Chat",
+                    headerStyle: { backgroundColor: primaryColor },
+                    headerTitleStyle: {
+                        fontFamily: Medium,
+                        fontSize: 22,
+                        color: "white",
+                    },
+                    headerTintColor: "white",
+                }}
+            />
+        </Stack>
     );
 }

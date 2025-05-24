@@ -1,6 +1,8 @@
 import { primaryColor } from "@/constants";
-import { SendHorizonal,FolderPlus } from "lucide-react-native";
-import React, { useState } from "react";
+import { useNavigation } from "expo-router";
+import { FolderPlus, Menu, SendHorizonal } from "lucide-react-native";
+import React, { useLayoutEffect, useState } from "react";
+
 import {
     FlatList,
     Keyboard,
@@ -22,6 +24,25 @@ interface Message {
 export default function ChatScreen() {
     const [messages, setMessages] = useState<Message[]>([]);
     const [input, setInput] = useState("");
+    const navigation = useNavigation();
+
+    const handleMenu = () => {
+        console.log("Menu clicked from inside ChatScreen");
+        // perform your action here
+    };
+
+    useLayoutEffect(() => {
+        navigation.setOptions({
+            headerRight: () => (
+                <TouchableOpacity
+                    onPress={handleMenu}
+                    style={{ marginRight: 15 }}
+                >
+                    <Menu size={24} color="white" />
+                </TouchableOpacity>
+            ),
+        });
+    }, [navigation]);
 
     const sendMessage = () => {
         if (!input.trim()) return;
@@ -65,10 +86,12 @@ export default function ChatScreen() {
                     />
 
                     <View style={styles.inputArea}>
-                        <TouchableOpacity
-                            onPress={sendMessage}
-                        >
-                            <FolderPlus size={36} strokeWidth={2}color={primaryColor}/>
+                        <TouchableOpacity onPress={sendMessage}>
+                            <FolderPlus
+                                size={36}
+                                strokeWidth={2}
+                                color={primaryColor}
+                            />
                         </TouchableOpacity>
                         <TextInput
                             value={input}
@@ -78,10 +101,12 @@ export default function ChatScreen() {
                             textAlignVertical="top"
                             style={styles.input}
                         />
-                        <TouchableOpacity
-                            onPress={sendMessage}
-                        >
-                            <SendHorizonal size={36} strokeWidth={2} color={primaryColor} />
+                        <TouchableOpacity onPress={sendMessage}>
+                            <SendHorizonal
+                                size={36}
+                                strokeWidth={2}
+                                color={primaryColor}
+                            />
                         </TouchableOpacity>
                     </View>
                 </View>
@@ -141,7 +166,7 @@ const styles = StyleSheet.create({
     },
     sendBtn: {
         marginLeft: 8,
-        marginRight:8,
+        marginRight: 8,
         backgroundColor: primaryColor,
         borderRadius: 14,
         paddingVertical: 10,
