@@ -1,4 +1,4 @@
-import { Link2 } from "lucide-react-native";
+import { Link2,Search } from "lucide-react-native";
 import React from "react";
 import { StyleSheet, TextInput, View } from "react-native";
 
@@ -15,12 +15,12 @@ const URLInput: React.FC<URLInputProps> = ({
     value,
     onChangeText,
     onSubmitEditing,
-    placeholder = "Add a Url",
+    placeholder = "Product or Ingredient",
 }) => {
     return (
         <View style={styles.wrapper}>
             <View style={styles.container}>
-                <Link2 style={styles.linkIcon} size={24} color={primaryColor} />
+                <Search style={styles.linkIcon} size={24} strokeWidth={2.5} color={primaryColor} />
                 <TextInput
                     style={styles.input}
                     value={value}

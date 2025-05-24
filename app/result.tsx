@@ -1,7 +1,9 @@
+import { Light, primaryColor } from "@/constants";
 import { useLocalSearchParams } from "expo-router";
 import { ChevronDown, ChevronUp } from "lucide-react-native";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
+    ActivityIndicator,
     Image,
     ScrollView,
     StyleSheet,
@@ -10,15 +12,75 @@ import {
     View,
 } from "react-native";
 
+interface Ingredient {
+    name: string;
+    id: string;
+    percent_estimate: number;
+    vegan?: "yes" | "no" | "maybe";
+    vegetarian?: "yes" | "no" | "maybe";
+    banned_regions: string;
+    org_guidance: string;
+    risk_reason: string;
+    why_present: string;
+}
+
+interface DailyValues {
+    energy_pct: number;
+    protein_pct: number;
+    total_fat_pct: number;
+    sat_fat_pct: number;
+    carbs_pct: number;
+    sugars_pct: number;
+    fiber_pct: number;
+    sodium_pct: number;
+}
+
+interface Nutrition {
+    energy_kcal: number;
+    protein_g: number;
+    total_fat_g: number;
+    sat_fat_g: number;
+    carbs_g: number;
+    sugars_g: number;
+    fiber_g: number;
+    sodium_mg: number;
+    dv: DailyValues;
+}
+
+interface ProductDetails {
+    barcode: string;
+    name: string;
+    brand: string;
+    quantity: string;
+    serving_size: string;
+    process_text: string;
+    images: {
+        front: string;
+        ingredients: string;
+        nutrition: string;
+    };
+    ingredients: Ingredient[];
+    vegan_flag: "yes" | "no" | "maybe";
+    vegetarian_flag: "yes" | "no" | "maybe";
+    nova_group: number;
+    nutriscore_grade: string;
+    ecoscore_grade: string;
+    nutrition: Nutrition;
+}
+
 export default function ResultScreen() {
     const { upcCode } = useLocalSearchParams();
     const [expandedIngredients, setExpandedIngredients] = useState<number[]>(
         []
     );
     const [expandedNutrition, setExpandedNutrition] = useState<number[]>([]);
+    const [data, setData] = useState<ProductDetails | null>(null);
 
-    const imageUrl =
-        "https://californiaranchmarket.com/cdn/shop/products/001540_d5f9f0d1-cd3d-486f-9355-c57d28c192e4.jpg?v=1639158823";
+    useEffect(() => {
+        import("../test/upcData.json").then((module) => {
+            setData(module.default as ProductDetails);
+        });
+    }, []);
 
     const toggleIngredient = (index: number) => {
         setExpandedIngredients((prev) =>
@@ -35,127 +97,107 @@ export default function ResultScreen() {
                 : [...prev, index]
         );
     };
+    if (!data) {
+        return (
+            <View style={styles.loadingContainer}>
+                <ActivityIndicator size="large" color="#2563eb" />
+                <Text style={styles.loadingText}>Loading product...</Text>
+            </View>
+        );
+    }
 
     return (
         <ScrollView
             style={styles.container}
-            contentContainerStyle={{ paddingBottom: 40 }}
+            contentContainerStyle={{ paddingBottom: 100 }}
         >
-            <View style={styles.card}>
-                <Image
-                    source={{ uri: imageUrl }}
-                    style={styles.image}
-                    resizeMode="contain"
-                />
-                <Text style={styles.title}>DIET COKE</Text>
+            <Image
+                source={{ uri: data.images.front }}
+                style={styles.image}
+                resizeMode="contain"
+            />
+            <Text style={styles.title}>{data.name.toUpperCase()}</Text>
 
-                <View style={styles.tagRow}>
-                    <Text style={styles.tagYellow}>
-                        No Significant nutrition
-                    </Text>
-                    <Text style={styles.tagGreen}>Highly Consumed</Text>
-                    <Text style={styles.tagGrey}>No Bans</Text>
-                </View>
-
+            <View style={{ marginTop: 20, marginBottom: 8 }}>
                 <Text style={styles.sectionTitle}>Summary</Text>
-                <Text style={styles.summaryText}>
-                    The product contains 3 ingredients that are banned in
-                    Australia & EU, 1 ingredients classified by WHO as a known
-                    carcinogens however WHO has recommended 40mg/kg of body
-                    weight as safe.
-                </Text>
-                <Text style={styles.summaryText}>
-                    The product does not provide any nutritional advantage.
-                </Text>
-
-                <View style={styles.chartContainer}>
-                    <Text style={styles.chartText}>protein 0g</Text>
-                    <Text style={styles.chartText}>vitamin 0g</Text>
-                    <Text style={styles.chartText}>carbs 0g</Text>
-                </View>
-
-                <Text style={styles.sectionTitle}>Ingredients</Text>
-                {["Medium Risk", "Low Risk", "High Risk"].map((risk, index) => (
-                    <View key={index} style={styles.ingredientBox}>
-                        <View style={styles.rowBetween}>
-                            <View>
-                                <Text style={styles.ingredientText}>
-                                    Aspartamate
-                                </Text>
-                                <Text style={styles.riskText}>{risk}</Text>
-                            </View>
-                            <TouchableOpacity
-                                onPress={() => toggleIngredient(index)}
-                            >
-                                {expandedIngredients.includes(index) ? (
-                                    <ChevronUp size={30} color="black" />
-                                ) : (
-                                    <ChevronDown size={30} color="black" />
-                                )}
-                            </TouchableOpacity>
-                        </View>
-                        {expandedIngredients.includes(index) && (
-                            <Text style={styles.expandedText}>
-                                Aspartamate is an artificial sweetener used in
-                                diet drinks. Risk levels vary by exposure and
-                                health conditions.
-                            </Text>
-                        )}
-                    </View>
-                ))}
-
-                <Text style={styles.sectionTitle}>Nutrition</Text>
-                {["Protein", "Aspartamate", "Aspartamate"].map(
-                    (item, index) => (
-                        <View key={index} style={styles.ingredientBox}>
-                            <View style={styles.rowBetween}>
-                                <View>
-                                    <Text style={styles.ingredientText}>
-                                        {item}
-                                    </Text>
-                                    <Text style={styles.nutritionValue}>
-                                        0g 2%
-                                    </Text>
-                                </View>
-                                <TouchableOpacity
-                                    onPress={() => toggleNutrition(index)}
-                                >
-                                    {expandedNutrition.includes(index) ? (
-                                        <ChevronUp size={30} color="black" />
-                                    ) : (
-                                        <ChevronDown size={30} color="black" />
-                                    )}
-                                </TouchableOpacity>
-                            </View>
-                            {expandedNutrition.includes(index) && (
-                                <Text style={styles.expandedText}>
-                                    {item} contributes minimally to daily values
-                                    in this product.
-                                </Text>
-                            )}
-                        </View>
-                    )
-                )}
+                <View style={styles.underline} />
+                <Text style={styles.summaryText}>{data.process_text}</Text>
             </View>
+
+            <View style={{ marginTop: 20, marginBottom: 8 }}>
+                <Text style={styles.sectionTitle}>Ingredients</Text>
+                <View style={styles.underline} />
+            </View>
+            {data.ingredients.map((ingredient, index) => (
+                <View key={index} style={styles.ingredientBox}>
+                    <View style={styles.rowBetween}>
+                        <View>
+                            <Text style={styles.ingredientText}>
+                                {ingredient.name}
+                            </Text>
+                        </View>
+                        <TouchableOpacity
+                            onPress={() => toggleIngredient(index)}
+                        >
+                            {expandedIngredients.includes(index) ? (
+                                <ChevronUp size={30} color="black" />
+                            ) : (
+                                <ChevronDown size={30} color="black" />
+                            )}
+                        </TouchableOpacity>
+                    </View>
+                    {expandedIngredients.includes(index) && (
+                        <View>
+                            <Text style={styles.riskText}>
+                                {ingredient.risk_reason}
+                            </Text>
+                            <Text style={styles.expandedText}>
+                                {ingredient.why_present}
+                            </Text>
+                            <Text style={styles.expandedText}>
+                                Vegan: {ingredient.vegan || "Unknown"}
+                            </Text>
+                            <Text style={styles.expandedText}>
+                                Vegetarian:
+                                {ingredient.vegetarian || "Unknown"}
+                            </Text>
+                            <Text style={styles.expandedText}>
+                                Banned Regions:{" "}
+                                {Array.isArray(ingredient.banned_regions)
+                                    ? ingredient.banned_regions.join(", ")
+                                    : ingredient.banned_regions}
+                            </Text>
+                        </View>
+                    )}
+                </View>
+            ))}
         </ScrollView>
     );
 }
 
 const styles = StyleSheet.create({
+    loadingContainer: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "#fff",
+    },
+    underline: {
+        height: 2,
+        backgroundColor: primaryColor,
+        marginTop: 1, // Adjust distance from text
+        width: 120,
+        marginBottom: 20,
+    },
+    loadingText: {
+        marginTop: 10,
+        fontSize: 16,
+        color: "#374151",
+    },
     container: {
         flex: 1,
         backgroundColor: "#fff",
-    },
-    card: {
-        margin: 16,
-        backgroundColor: "#fff",
-        borderRadius: 12,
-        padding: 16,
-        shadowColor: "#000",
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
-        shadowRadius: 6,
-        elevation: 3,
+        padding:16
     },
     image: {
         width: "100%",
@@ -192,13 +234,13 @@ const styles = StyleSheet.create({
         fontSize: 12,
     },
     sectionTitle: {
-        fontSize: 16,
-        fontWeight: "600",
+        fontFamily: Light,
+        fontSize: 24,
+        color: primaryColor,
         marginTop: 20,
-        marginBottom: 8,
     },
     summaryText: {
-        fontSize: 14,
+        fontSize: 16,
         color: "#4b5563",
         marginBottom: 6,
     },
@@ -220,8 +262,8 @@ const styles = StyleSheet.create({
         marginVertical: 4,
     },
     ingredientText: {
-        fontSize: 14,
-        fontWeight: "500",
+        fontFamily: Light,
+        fontSize: 16,
     },
     riskText: {
         fontSize: 13,

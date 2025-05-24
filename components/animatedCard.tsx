@@ -1,5 +1,5 @@
 import { Light, primaryColor, SemiBold } from "@/constants";
-import React, { useRef, useState,useEffect } from "react";
+import React, { useRef, useState } from "react";
 import {
     Dimensions,
     NativeScrollEvent,
@@ -10,7 +10,7 @@ import {
     View,
 } from "react-native";
 
-import { FileSearch } from "lucide-react-native";
+import { FileSearch, Scan } from "lucide-react-native";
 
 const { width } = Dimensions.get("window");
 
@@ -25,18 +25,18 @@ const Carousel = () => {
 
     const totalSlides = 3;
 
-    useEffect(() => {
-        const interval = setInterval(() => {
-            let nextIndex = (index + 1) % totalSlides;
-            scrollRef.current?.scrollTo({
-                x: nextIndex * width,
-                animated: true,
-            });
-            setIndex(nextIndex);
-        }, 5000);
+    // useEffect(() => {
+    //     const interval = setInterval(() => {
+    //         let nextIndex = (index + 1) % totalSlides;
+    //         scrollRef.current?.scrollTo({
+    //             x: nextIndex * width,
+    //             animated: true,
+    //         });
+    //         setIndex(nextIndex);
+    //     }, 5000);
 
-        return () => clearInterval(interval); // cleanup on unmount
-    }, [index]);
+    //     return () => clearInterval(interval); // cleanup on unmount
+    // }, [index]);
 
     return (
         <View style={styles.container}>
@@ -51,8 +51,18 @@ const Carousel = () => {
             >
                 {/* Slide 1 */}
                 <View style={styles.slide}>
-                    <FileSearch size={30} strokeWidth={1.5} />
+                    <FileSearch size={35} strokeWidth={1.5} />
                     <Text style={styles.textInstruction}>You Scan</Text>
+                    <Text style={styles.textWorkings}>
+                        Point At Your Barcode
+                    </Text>
+                    <Scan size={125} strokeWidth={1} color={primaryColor}>
+                        <View style={styles.scannerInside}>
+                            <Text style={styles.scanLabel}>Barcode</Text>
+                            <View style={styles.underline}></View>
+                            <Text style={styles.scanLabel}>Here</Text>
+                        </View>
+                    </Scan>
                 </View>
 
                 {/* Slide 2 */}
@@ -108,20 +118,47 @@ const styles = StyleSheet.create({
         fontFamily: Light,
         fontSize: 20,
     },
+    underline: {
+        height: 2,
+        backgroundColor: primaryColor,
+        marginTop: 2, // Adjust distance from text
+        width: "200%",
+        marginBottom: 2,
+    },
     slide: {
         width: width - 30,
         height: 225,
         alignItems: "center",
-        justifyContent: "space-around",
         backgroundColor: "white",
+        justifyContent: "space-around",
         borderRadius: 10,
         margin: 15,
+        paddingTop: 15,
+    },
+    textWorkings: {
+        fontFamily: Light,
+        fontSize: 14,
     },
     textInstruction: {
         fontSize: 16,
         fontFamily: SemiBold,
         color: primaryColor,
     },
+    scannerInside: {
+        alignItems: "center",
+        justifyContent: "center",
+        width: "60%",
+        height: "70%",
+        marginTop: "20%",
+        marginLeft: "20%",
+        backgroundColor: "#F6F6F6",
+        padding: "10%",
+        borderRadius: 12,
+    },
+    scanLabel: {
+        fontSize: 11,
+    },
+
     dotsContainer: {
         flexDirection: "row",
         marginTop: 10,

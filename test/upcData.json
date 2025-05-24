@@ -1,0 +1,353 @@
+{
+    "barcode": "0028400040112",
+    "name": "Cheetos Crunchy",
+    "brand": "cheetos",
+    "quantity": "1 oz (28.3 g)",
+    "serving_size": "1 package (28.3 g)",
+    "process_text": "Ultra-processed food and drink products",
+    "images": {
+        "front": "https://images.openfoodfacts.org/images/products/002/840/004/0112/front_en.45.400.jpg",
+        "ingredients": "https://images.openfoodfacts.org/images/products/002/840/004/0112/ingredients_en.15.400.jpg",
+        "nutrition": "https://images.openfoodfacts.org/images/products/002/840/004/0112/nutrition_en.51.400.jpg"
+    },
+    "ingredients": [
+        {
+            "name": "Corn Meal",
+            "id": "en:cornmeal",
+            "percent_estimate": 62.5,
+            "vegan": "yes",
+            "vegetarian": "yes",
+            "banned_regions": "Corn meal is not known to be banned in any regions.",
+            "org_guidance": "Multiple regulatory and health organizations, including the FDA and WHO, consider corn meal a safe and nutritious ingredient when consumed as part of a balanced diet.",
+            "risk_reason": "Corn meal is regarded as safe with no known specific risks when produced and consumed under appropriate conditions.",
+            "why_present": "Corn meal is an essential ingredient in many recipes and cuisines due to its versatility, unique flavor, and nutritional value."
+        },
+        {
+            "name": "Vegetable Oil",
+            "id": "en:vegetable-oil",
+            "percent_estimate": 18.75,
+            "vegan": "yes",
+            "vegetarian": "yes",
+            "banned_regions": "No bans are reported for vegetable oil under common regulatory conditions.",
+            "org_guidance": "No specific recommendations or concerns are raised by major health organizations regarding regular use of vegetable oil, aside from general dietary moderation.",
+            "risk_reason": "It is considered low risk as it is a standard culinary ingredient, although excessive consumption of oils and fats can contribute to dietary imbalance.",
+            "why_present": "Vegetable oil is present because it serves as a neutral, versatile base for cooking, baking, and frying, and improves the texture, flavor, and shelf life of food products."
+        },
+        {
+            "name": "Cheese Seasoning",
+            "id": "en:cheese-seasoning",
+            "percent_estimate": 9.375,
+            "banned_regions": "No specific bans are noted for this ingredient.",
+            "org_guidance": "As a generally safe food ingredient, regulatory agencies and health organizations typically do not issue special advisories against its consumption, but recommend checking for and moderating the intake of any high-risk additives or excessive sodium content.",
+            "risk_reason": "The risk associated with cheese seasoning is dependent on its specific composition, such as the presence of additives, preservatives, or high levels of sodium, which are generally low to medium risk if consumed in moderation.",
+            "why_present": "Cheese seasoning is used to provide a cheesy flavor to a variety of foods, enhancing their taste and appeal."
+        },
+        {
+            "name": "Salt",
+            "id": "en:salt",
+            "percent_estimate": 9.375,
+            "vegan": "yes",
+            "vegetarian": "yes",
+            "banned_regions": "Salt is not banned in any region, but its usage is regulated in some countries, particularly in processed foods.",
+            "org_guidance": "WHO recommends that adults consume less than 5 grams of salt per day to reduce the risk of cardiovascular diseases and other related health problems.",
+            "risk_reason": "The consumption of salt is considered medium risk as excessive intake can lead to health issues, such as hypertension and cardiovascular diseases.",
+            "why_present": "Salt is present in products to enhance flavor and act as a preservative; it is essential for human health in small quantities."
+        },
+        {
+            "name": "Corn Meal",
+            "id": "en:cornmeal",
+            "percent_estimate": 33.3333333333333,
+            "vegan": "yes",
+            "vegetarian": "yes",
+            "banned_regions": "To the best of our knowledge, corn meal itself is not banned in any regions.",
+            "org_guidance": "Prominent organizations such as the WHO and other food safety agencies endorse the use of corn meal as part of a balanced diet, emphasizing proper handling and sourcing.",
+            "risk_reason": "Corn meal is considered safe and is naturally gluten-free, making it acceptable for many dietary requirements. It generally poses minimal risk when processed and stored properly.",
+            "why_present": "Corn meal is a widely used ingredient due to its functional properties and culinary versatility. It is a staple food, providing flavor, texture, and essential nutrients."
+        },
+        {
+            "name": "Ferrous Sulfate",
+            "id": "en:ferrous-sulfate",
+            "percent_estimate": 14.5833333333333,
+            "banned_regions": "There are no known bans on ferrous sulfate for its intended use as an iron supplement.",
+            "org_guidance": "Medical organizations recommend its cautious use due to its effectiveness for treating iron deficiency while highlighting the importance of proper dosing and monitoring.",
+            "risk_reason": "It is categorized as medium risk due to potential side effects, such as gastrointestinal discomfort, and the need for careful administration to avoid toxicity, especially in children.",
+            "why_present": "Ferrous sulfate is present in products as an iron supplement, effective in treating iron deficiency anemia and replenishing iron levels."
+        },
+        {
+            "name": "Niacin",
+            "id": "en:e375",
+            "percent_estimate": 7.29166666666666,
+            "vegan": "maybe",
+            "vegetarian": "maybe",
+            "banned_regions": "There are no regions where the inclusion or use of Niacin as a dietary supplement or nutrient is banned.",
+            "org_guidance": "WHO and most health authorities recommend adequate intake of Niacin to prevent deficiency disorders like pellagra; however, they advise monitoring its dosage to avoid excessive intake side effects.",
+            "risk_reason": "Niacin is considered low risk when consumed within recommended amounts as a nutrient, as its main adverse effects occur with excess intake, which can cause skin flushing and discomfort.",
+            "why_present": "Niacin, also known as vitamin B3, is included in formulations and consumed because it is an essential nutrient that supports various physiological functions such as energy production and nervous system health."
+        },
+        {
+            "name": "Thiamin Mononitrate",
+            "id": "en:thiamin-mononitrate",
+            "percent_estimate": 3.64583333333333,
+            "vegan": "maybe",
+            "vegetarian": "maybe",
+            "banned_regions": "It is not banned in any regions according to the provided information.",
+            "org_guidance": "International health agencies generally support the use of thiamine mononitrate in appropriate dosages for preventing or treating vitamin B1 deficiencies.",
+            "risk_reason": "The risk is considered low as it is essential for health and approved for supplementation, though excessive intake or rare allergic reactions should be noted.",
+            "why_present": "Thiamin mononitrate is included in products because it is a source of vitamin B1, an essential nutrient."
+        },
+        {
+            "name": "Riboflavin",
+            "id": "en:e101",
+            "percent_estimate": 1.82291666666666,
+            "vegan": "maybe",
+            "vegetarian": "yes",
+            "banned_regions": "Riboflavin is not known to be banned in any region, as it is a necessary vitamin.",
+            "org_guidance": "Health organizations generally recommend its inclusion in the diet to support metabolic processes and overall health, and deficiency is rare in balanced diets.",
+            "risk_reason": "Riboflavin poses a low risk because it is a natural nutrient that the body requires for maintaining healthy metabolism. Excess intake is typically excreted without adverse effects.",
+            "why_present": "Riboflavin is included as it is an essential nutrient (Vitamin B2) that supports energy production and is vital for various cellular functions."
+        },
+        {
+            "name": "Folic Acid",
+            "id": "en:folic-acid",
+            "percent_estimate": 1.82291666666666,
+            "vegan": "yes",
+            "vegetarian": "yes",
+            "banned_regions": "Folic acid is generally not banned anywhere but is regulated in some countries to prevent excessive enrichment in food products.",
+            "org_guidance": "Organizations like the World Health Organization and national health agencies recommend adequate intake of folic acid, especially for women of child-bearing age, to prevent neural tube defects in fetuses.",
+            "risk_reason": "Folic acid is considered a low-risk additive as it is an essential vitamin, but over-consumption may mask vitamin B12 deficiencies, requiring careful dosage monitoring.",
+            "why_present": "Folic acid is included in foods and supplements because it is a vital nutrient necessary for DNA synthesis, cell division, and preventing folate deficiency."
+        },
+        {
+            "name": "Corn Oil",
+            "id": "en:corn-oil",
+            "percent_estimate": 9.375,
+            "vegan": "yes",
+            "vegetarian": "yes",
+            "banned_regions": "Corn oil is not reported as banned in any regions.",
+            "org_guidance": "No specific warnings or restrictions by organizations such as WHO are noted regarding corn oil.",
+            "risk_reason": "It is considered low risk as corn oil consists primarily of natural fats used for cooking, with minimal concerns if consumed in moderation.",
+            "why_present": "Corn oil is included as a versatile vegetable oil commonly used in food preparation due to its mild flavor, high smoke point, and utility in providing desirable cooking properties."
+        },
+        {
+            "name": "Canola Oil",
+            "id": "en:canola-oil",
+            "percent_estimate": 4.6875,
+            "vegan": "yes",
+            "vegetarian": "yes",
+            "banned_regions": "Canola oil is not known to be banned in any regions.",
+            "org_guidance": "Organizations like the American Heart Association and health agencies recognize canola oil as a heart-healthy oil due to its composition.",
+            "risk_reason": "Canola oil is generally considered safe; it contains beneficial components like monounsaturated fats and omega-3 fatty acids that are associated with health benefits. No significant risks are noted.",
+            "why_present": "Canola oil is included for its culinary properties, such as a light flavor and a high smoke point, making it suitable for cooking methods like frying, baking, and sautéing."
+        },
+        {
+            "name": "Sunflower Oil",
+            "id": "en:sunflower-oil",
+            "percent_estimate": 4.6875,
+            "vegan": "yes",
+            "vegetarian": "yes",
+            "banned_regions": "According to the information provided, sunflower oil is not reported as banned in any region.",
+            "org_guidance": "From the available information, there doesn't seem to be any World Health Organization or other agency recommendations specifically addressing sunflower oil.",
+            "risk_reason": "There are no specific references suggesting risks associated with sunflower oil in the provided data; it generally poses no notable health concerns when consumed in moderation as part of a balanced diet.",
+            "why_present": "Sunflower oil is used for its nutritional properties and versatility in food preparation, including frying, baking, and as an ingredient in dressings."
+        },
+        {
+            "name": "Whey",
+            "id": "en:whey",
+            "percent_estimate": 4.6875,
+            "vegan": "no",
+            "vegetarian": "maybe",
+            "banned_regions": "There are no bans on whey reported.",
+            "org_guidance": "No specific recommendations restricting whey use from WHO or major health agencies; it is generally regarded as safe.",
+            "risk_reason": "It might present risks related to lactose intolerance or allergies for sensitive individuals.",
+            "why_present": "Whey is included due to its protein content, nutritional benefits, and functional properties in food products."
+        },
+        {
+            "name": "Cheddar Cheese",
+            "id": "en:cheddar",
+            "percent_estimate": 2.34375,
+            "vegan": "no",
+            "vegetarian": "maybe",
+            "banned_regions": "Cheddar cheese is not explicitly banned in any regions, though import restrictions may apply in certain countries due to local regulations.",
+            "org_guidance": "Cheddar cheese is generally recognized as safe and nutritious, with organizations like WHO highlighting the importance of sufficient calcium and protein in diets, which cheese can contribute to.",
+            "risk_reason": "Cheddar cheese, being a dairy product, may pose medium risk under certain conditions like intolerance to lactose or concerns about sourcing and processing, but general risks are minimal when consumed properly.",
+            "why_present": "Cheddar cheese is included in food products for its excellent flavor, versatility, and also its nutritional content, providing calcium, protein, and other nutrients."
+        },
+        {
+            "name": "Canola Oil",
+            "id": "en:canola-oil",
+            "percent_estimate": 1.171875,
+            "vegan": "yes",
+            "vegetarian": "yes",
+            "banned_regions": "There is no evidence or mention that canola oil is banned in any specific regions.",
+            "org_guidance": "Health organizations generally consider canola oil safe and beneficial when used in moderation due to its monounsaturated fats content, but they advise balancing it with other fats to maintain a healthy fatty acid intake.",
+            "risk_reason": "The medium risk level stems from the refining processes involved, often using genetically modified crops, and its less favorable omega-6 to omega-3 balance, which can pose health concerns if overconsumed.",
+            "why_present": "Canola oil is commonly used as a cooking oil and as an ingredient in processed foods due to its mild flavor, affordability, and relatively high smoke point."
+        },
+        {
+            "name": "Maltodextrin",
+            "id": "en:maltodextrin",
+            "percent_estimate": 0.5859375,
+            "vegan": "yes",
+            "vegetarian": "yes",
+            "banned_regions": "No explicit bans were mentioned in the data.",
+            "org_guidance": "No specific guidance from WHO or other agencies is provided in the current context.",
+            "risk_reason": "There is no direct information provided about its risk, but based on general knowledge, it is considered safe for general consumption within regulatory limits.",
+            "why_present": "Maltodextrin is a common food ingredient used as a thickener, filler, or preservative."
+        },
+        {
+            "name": "Natural and Artificial Flavors",
+            "id": "en:natural-and-artificial-flavouring",
+            "percent_estimate": 0.29296875,
+            "vegan": "maybe",
+            "vegetarian": "maybe",
+            "banned_regions": "Some artificial flavor compounds might be banned in certain countries, though the exact status depends on regional regulations.",
+            "org_guidance": "Organizations like the FDA approve many flavor compounds as Generally Recognized as Safe (GRAS), but updates and individual compound evaluations may occur.",
+            "risk_reason": "The medium risk arises due to the ambiguity surrounding these flavors' specific components, as natural and artificial flavors can contain various compounds, some of which might have debated health effects.",
+            "why_present": "Natural and artificial flavors are added to enhance the taste and aroma of the product, making it more palatable or appealing to consumers."
+        },
+        {
+            "name": "Salt",
+            "id": "en:salt",
+            "percent_estimate": 0.146484375,
+            "vegan": "yes",
+            "vegetarian": "yes",
+            "banned_regions": "Salt itself is not banned in any region, but some regulatory bodies recommend limits on its usage in food products.",
+            "org_guidance": "The World Health Organization (WHO) and other health agencies recommend individuals to monitor and reduce their salt intake to stay within a safe dietary threshold.",
+            "risk_reason": "Salt consumption is associated with the risk of increasing blood pressure when consumed in excess, which can lead to cardiovascular issues.",
+            "why_present": "Salt, chemically known as sodium chloride, is commonly used in food products to enhance flavor, preserve the food, and sometimes adjust the texture."
+        },
+        {
+            "name": "Whey Protein",
+            "id": "en:whey-protein",
+            "percent_estimate": 0.0732421875,
+            "vegan": "no",
+            "vegetarian": "yes",
+            "banned_regions": "There are no known regions or countries where whey protein is banned.",
+            "org_guidance": "Organizations like the FDA have recognized whey protein as safe when consumed appropriately, and it is widely approved in the nutrition and fitness community.",
+            "risk_reason": "Whey protein poses a low risk as it is generally recognized as safe for most individuals when consumed as recommended. However, it should be consumed responsibly, particularly by individuals with milk protein allergies.",
+            "why_present": "Whey protein is included in products due to its rich nutritional profile, including essential amino acids, and its benefits for muscle recovery and protein synthesis."
+        },
+        {
+            "name": "Monosodium Glutamate",
+            "id": "en:e621",
+            "percent_estimate": 0.03662109375,
+            "vegan": "yes",
+            "vegetarian": "yes",
+            "banned_regions": "MSG is not banned in any region mentioned in the context.",
+            "org_guidance": "Authorities like the FDA recognize MSG as generally safe, and international evaluations, such as those by JECFA, confirm its safety for consumption.",
+            "risk_reason": "Monosodium Glutamate is deemed safe by regulatory bodies such as the FDA and JECFA. However, some individuals report sensitivity to its consumption, which includes mild and short-term symptoms, contributing to a medium-level risk assignment.",
+            "why_present": "Monosodium Glutamate is added to foods to enhance their savory umami flavor, making the dishes more palatable and appealing."
+        },
+        {
+            "name": "Lactic Acid",
+            "id": "en:e270",
+            "percent_estimate": 0.018310546875,
+            "vegan": "yes",
+            "vegetarian": "yes",
+            "banned_regions": "There are no known bans on Lactic Acid.",
+            "org_guidance": "Generally Recognized as Safe (GRAS) by various regulatory authorities worldwide.",
+            "risk_reason": "The risk is considered low based on its natural occurrence and the general consensus on its safety and effectiveness when used as intended.",
+            "why_present": "Lactic Acid is used for its functional roles such as acting as a preservative, flavoring agent in foods, and an exfoliating agent in skincare products."
+        },
+        {
+            "name": "Citric Acid",
+            "id": "en:e330",
+            "percent_estimate": 0.0091552734375,
+            "vegan": "yes",
+            "vegetarian": "yes",
+            "banned_regions": "Citric acid is not banned in any regions as it is commonly used and approved for such purposes.",
+            "org_guidance": "Organizations like the EFSA and regulatory authorities monitor its safety and approve its usage in consumer products.",
+            "risk_reason": "It is considered generally safe but might cause rare sensitivities in some individuals potentially due to production residues.",
+            "why_present": "Citric acid is used as a preservative and flavoring agent in food products, enhancing taste and shelf life."
+        },
+        {
+            "name": "Artificial Color",
+            "id": "en:colour",
+            "percent_estimate": 0.0091552734375,
+            "banned_regions": "Certain artificial colors are banned in some regions depending on local regulations and health concerns.",
+            "org_guidance": "Health organizations recommend consuming Artificial Colors in moderation and ensuring they comply with food safety regulations.",
+            "risk_reason": "Some people have sensitivities to components of Artificial Colors, and there is ongoing research regarding their potential health impacts when consumed in large quantities.",
+            "why_present": "Artificial Colors are added to food and other products to enhance their visual appearance, making them more appealing to consumers."
+        },
+        {
+            "name": "Milk",
+            "id": "en:milk",
+            "percent_estimate": 1.171875,
+            "vegan": "no",
+            "vegetarian": "yes",
+            "banned_regions": "Milk and dairy products are not banned but may have regulations on processing and safety standards.",
+            "org_guidance": "Health organizations generally consider milk safe and nutritious when consumed in moderation within a balanced diet; pasteurization is highly recommended to reduce the risk of pathogens.",
+            "risk_reason": "The risk is generally considered low when properly processed; potential risks could include allergies or intolerances in sensitive individuals.",
+            "why_present": "Milk is a common ingredient in many food products, providing nutrients such as calcium, protein, and vitamins."
+        },
+        {
+            "name": "Cheese Cultures",
+            "id": "en:lactic-ferments",
+            "percent_estimate": 0.5859375,
+            "vegan": "maybe",
+            "vegetarian": "yes",
+            "banned_regions": "There are no common reports of this ingredient being banned in any region.",
+            "org_guidance": "Organizations like the FDA or EFSA typically recognize the use of cheese cultures as acceptable and safe in food production.",
+            "risk_reason": "Cheese cultures are generally considered safe as they do not pose significant health risks; they are part of controlled microbial processes.",
+            "why_present": "Cheese cultures are included in dairy and cheese products to initiate and control the fermentation process, which helps develop the specific flavor, texture, and characteristics of cheese."
+        },
+        {
+            "name": "Salt",
+            "id": "en:salt",
+            "percent_estimate": 0.29296875,
+            "vegan": "yes",
+            "vegetarian": "yes",
+            "banned_regions": "Salt itself is not known to be banned in any region.",
+            "org_guidance": "Organizations like the WHO recommend limiting daily salt intake to reduce health risks.",
+            "risk_reason": "The risk is medium as excessive consumption of salt can lead to health issues such as hypertension.",
+            "why_present": "Salt is present because it enhances flavors and acts as a preservative."
+        },
+        {
+            "name": "Enzymes",
+            "id": "en:enzyme",
+            "percent_estimate": 0.29296875,
+            "vegan": "maybe",
+            "vegetarian": "maybe",
+            "banned_regions": "Enzymes are not banned in any specific region as long as they meet the regulatory guidelines and approval processes.",
+            "org_guidance": "Organizations such as EFSA oversee the safety assessments of enzymes used in food production and provide recommendations to ensure their safe usage.",
+            "risk_reason": "While enzymes are extensively evaluated for safety and are generally considered safe, the medium risk can be attributed to potential allergenic responses or sensitivity in certain individuals.",
+            "why_present": "Enzymes are added to food to catalyze biochemical reactions, aiding in processes like cheese-making, brewing, and other production methods."
+        },
+        {
+            "name": "Corn",
+            "id": "en:corn-maltodextrin",
+            "percent_estimate": 0.5859375,
+            "vegan": "yes",
+            "vegetarian": "yes",
+            "banned_regions": "Corn is generally not banned in any country, but restrictions or labeling may apply to genetically modified varieties depending on the region.",
+            "org_guidance": "The WHO and other health agencies generally approve corn for consumption, emphasizing moderation, especially for individuals mindful of sugar or weight management constraints.",
+            "risk_reason": "Corn is classified as a medium risk mainly due to its high starch content, which can impact blood sugar levels, and the prevalence of genetically modified varieties that may raise concerns for some individuals.",
+            "why_present": "Corn is included as a versatile and nutritious ingredient, providing fiber, vitamins, and minerals that offer health benefits such as improved digestion and eye health."
+        }
+    ],
+    "vegan_flag": "no",
+    "vegetarian_flag": "maybe",
+    "nova_group": 4,
+    "nutriscore_grade": "e",
+    "ecoscore_grade": "a",
+    "nutrition": {
+        "energy_kcal": 565,
+        "protein_g": 7.07,
+        "total_fat_g": 35.3,
+        "sat_fat_g": 5.3,
+        "carbs_g": 53,
+        "sugars_g": 3.53,
+        "fiber_g": 3.53,
+        "sodium_mg": 883,
+        "dv": {
+            "energy_pct": 28,
+            "protein_pct": 14,
+            "total_fat_pct": 45,
+            "sat_fat_pct": 27,
+            "carbs_pct": 19,
+            "sugars_pct": 7,
+            "fiber_pct": 13,
+            "sodium_pct": 38
+        }
+    }
+}

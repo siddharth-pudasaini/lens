@@ -31,7 +31,7 @@ export default function CameraScreen() {
         setTimeout(() => {
             isScannedRef.current = false;
             setScanData(null);
-        }, 3000); // Allow scanning again after 3 seconds
+        }, 5000); // Allow scanning again after 5 seconds
     };
 
     if (!permission) return <View />;
